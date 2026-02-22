@@ -2,9 +2,15 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './users/auth/auth.module';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost:27017/odb')],
+  imports: [
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017', {
+      dbName: 'odb',
+    }),
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
